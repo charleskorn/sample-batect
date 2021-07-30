@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cd "$(dirname "$0")"/..
+
+branch=$(git branch --show-current)
+git fetch origin "$branch" && git pull --rebase origin "$branch"
+
+./batect --no-update-notification checkUpdate

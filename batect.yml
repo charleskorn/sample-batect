@@ -1,0 +1,24 @@
+project_name: sample-project
+
+containers:
+  runtime-env:
+      image: bitnami/git
+      volumes:
+        - local: .
+          container: /app
+        - local: ~/.ssh
+          container: /home/container-user/.ssh
+        - local: <{batect.project_directory}
+          container: /code
+      working_directory: /code
+      run_as_current_user:
+        enabled: true
+        home_directory: /home/container-user
+
+tasks:
+  checkUpdate:
+      description: Check sample Batect version
+      group: Sample tasks
+      run:
+        container: runtime-env
+        command: /app/check-update.sh
