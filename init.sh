@@ -1,1 +1,1 @@
-git config core.hooksPath './scripts/hooks'
+git config core.hooksPath './hooks'
